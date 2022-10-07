@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>PyMC3 | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">PyMC3</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-08-09</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<h1 id="data">Data</h1>
+<pre><code>Y = alpha + beta[0] * X1 + beta[1] * X2 + np.random.randn(size)
+</code></pre>
+<h1 id="model-specification">Model Specification</h1>
+<pre><code>basic_model = pm.Model()
+
+with basic_model:
+
+    # Priors for unknown model parameters
+    alpha = pm.Normal(&quot;alpha&quot;, mu=0, sigma=10)
+    beta = pm.Normal(&quot;beta&quot;, mu=0, sigma=10, shape=2)
+    sigma = pm.HalfNormal(&quot;sigma&quot;, sigma=1)
+
+    # Expected value of outcome
+    mu = alpha + beta[0] * X1 + beta[1] * X2
+
+    # Likelihood (sampling distribution) of observations
+    Y_obs = pm.Normal(&quot;Y_obs&quot;, mu=mu, sigma=sigma, observed=Y)
+</code></pre>
+<p><strong>Stochastic</strong> random variables</p>
+<pre><code>alpha = Normal('alpha', mu=0, sigma=10)
+beta = Normal('beta', mu=0, sigma=10, shape=2)
+sigma = HalfNormal('sigma', sigma=1)
+</code></pre>
+<p><strong>Deterministic</strong> random variable</p>
+<pre><code>mu = alpha + beta[0]*X1 + beta[1]*X2
+</code></pre>
+<p>This creates a deterministic random variable, which implies that its value is completely determined by its parents'  values.</p>
+<p><strong>Observed Stochastic</strong> variable<br>
+This is a special case of a stochastic variable that we call an observed stochastic, and represents the data likelihood of the model. It is identical to a standard stochastic, except that its observed argument, which passes the data to the variable, indicates that the values for this variable were observed, and should not be changed by any fitting algorithm applied to the model. The data can be passed in the form of either a numpy.ndarray or pandas.DataFrame object.</p>
+<pre><code>Y_obs = Normal('Y_obs', mu=mu, sigma=sigma, observed=Y)
+</code></pre>
+<p>多个observation的情况：<br>
+https://stackoverflow.com/questions/24242660/pymc3-multiple-observed-values/24271760<br>
+可以直接用?</p>
+<pre><code>plt.figure(figsize=(10, 10)) 
+_ = traceplot(success_samples)
+</code></pre>
+<h1 id="model-fitting">Model fitting</h1>
+<h2 id="map">MAP</h2>
+<pre><code>map_estimate = pm.find_MAP(model=basic_model)
+map_estimate
+</code></pre>
+<pre><code>{'alpha': array(0.95724679),
+ 'beta': array([1.10071814, 2.9511438 ]),
+ 'sigma_log__': array(0.03540151),
+ 'sigma': array(1.0360356)}
+</code></pre>
+<h2 id="sampling-methods">Sampling methods</h2>
+<p>NUTS? 用了梯度信息</p>
+<pre><code>with basic_model:
+    # draw 500 posterior samples
+    trace = pm.sample(500, return_inferencedata=False)
+    # samples = pm.sample(1000, tune=1000, cores=2, random_seed=42)
+</code></pre>
+<p>tune不等于burn-in！！(其实也可以调大点覆盖burn_in, 不过最好check parameters再决定取哪一段)</p>
+<pre><code>tune : int
+    Number of iterations to tune, defaults to 1000. Samplers adjust the step sizes, scalings or
+    similar during tuning. Tuning samples will be drawn in addition to the number specified in
+    the ``draws`` argument, and will be discarded unless ``discard_tuned_samples`` is set to
+    False.
+</code></pre>
+<p>The first dimension of the array is the sampling index and the later dimensions match the shape of the variable.</p>
+<pre><code>trace[&quot;alpha&quot;][-5:]
+</code></pre>
+<p>Or if we wanted to use the slice sampling algorithm</p>
+<pre><code>with basic_model:
+    # instantiate sampler
+    step = pm.Slice()
+
+    # draw 5000 posterior samples
+    trace = pm.sample(5000, step=step, return_inferencedata=False)
+</code></pre>
+<p>trace返回的sample是不同chain合在一起的，比如有两个链，先把前一个链的samples排完了，再排第二个链。<br>
+记得要设置burn_in</p>
+<pre><code>trace.get_values('mu1',combine=False,chains=1)
+</code></pre>
+<p>这个可以得到第二条链的samples</p>
+<h2 id="posterior-analysis">Posterior analysis</h2>
+<p>PyMC3’s plotting and diagnostics functionalities are now taken care of by a dedicated, platform-agnostic package named ArviZ. A simple posterior plot can be created using plot_trace.</p>
+<pre><code>import arviz as az
+with basic_model:
+    az.plot_trace(trace, compact=False);
+</code></pre>
+<p>az.plot_trace建议看看文档https://arviz-devs.github.io/arviz/api/generated/arviz.plot_trace.html</p>
+<pre><code>with basic_model:
+    display(az.summary(trace, round_to=2))
+</code></pre>
+<p>官方文档<br>
+http://docs.pymc.io/notebooks/getting_started</p>
+<p>youtube上的tutorial（2019）<br>
+https://www.youtube.com/watch?v=SS_pqgFziAg<br>
+https://github.com/fonnesbeck/mcmc_pydata_london_2019/blob/master/notebooks/1-Introduction_to_PyMC3.ipynb</p>
+<p>这篇其实很详细了<br>
+https://github.com/fonnesbeck/mcmc_pydata_london_2019/blob/master/notebooks/3-Building_Bayesian_models_in_PyMC3.ipynb</p>
+<p>model checking（这个基本上啥都有）<br>
+https://github.com/fonnesbeck/mcmc_pydata_london_2019/blob/master/notebooks/4-Model_Checking.ipynb</p>
+<pre><code>from pymc3 import model_to_graphviz
+model_to_graphviz(rat_model)
+</code></pre>
+<p>太强了，直接生成directed acyclic graph (DAG)</p>
+<pre><code>plt.plot(tr.get_values('m_a', chains=0), 'r--')
+plt.plot(tr.get_values('m_a', chains=1), 'k--')
+</code></pre>
+<p>直接check convergence</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/variational-inference/">
+              <h3 class="post-title">
+                下一篇：Variational Inference and comparison with EM, MCMC
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

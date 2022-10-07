@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Keras | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Keras</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-09-18</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<h1 id="ae和vae">AE和VAE</h1>
+<p>有一个关键是，每一行数据都会产生<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>μ</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>μ</mi><mn>2</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">;</mo><msub><mi>σ</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>σ</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\mu_1, \mu_2...; \sigma_1, \sigma_2,..</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span></span></span></span>; 所以要想还原真实的分布，我们并不知道这些随着<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>变化的参数，我们需要让他们跟我们定义的prior <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>z</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">p(z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>分布相近，比如standard normal distribution，这样我们就能在不知道<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>的情况下，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>μ</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>μ</mi><mn>2</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">;</mo><msub><mi>σ</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>σ</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\mu_1, \mu_2...; \sigma_1, \sigma_2,..</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span></span></span></span>未知的的情况下，从prior分布中直接采样，然后出来decoder得到fake data.<br>
+Hence, we need to approximate <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>z</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">p(z|x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo>(</mo><mi>z</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">q(z|x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> to make it a tractable distribution. (我们想要z sample出来的差不多？)(为什么不是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>z</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">p(x|z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo>(</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>z</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">q(x|z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span>的KL散度？不好比较？)<br>
+Encoder: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>z</mi><mo>∼</mo><mi>q</mi><mo>(</mo><mi>z</mi><mi mathvariant="normal">∣</mi><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">z\sim q(z|x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mord">∣</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span><br>
+Decoder: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>x</mi><mo>~</mo></mover><mo>∼</mo><mi>p</mi><mo>(</mo><mi>x</mi><mi mathvariant="normal">∣</mi><mi>z</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\tilde{x}\sim p(x|z)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6678599999999999em;vertical-align:0em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6678599999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span style="top:-3.35em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">~</span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">)</span></span></span></span><br>
+https://www.kdnuggets.com/2021/10/introduction-autoencoder-variational-autoencoder-vae.html</p>
+<h1 id="entropy">entropy</h1>
+<p>其实就是在p(x)下的expectation of log likelihood</p>
+<h1 id="多个model-组建以及训练后相同层的weight相同">多个Model 组建以及训练后，相同层的weight相同</h1>
+<p>比如auto-encoder, 把整个当作模型model，前面encoder_model，后面decoder_model时；当训练整个model的时候，其实encoder_model和decoder_model的参数也在跟着变化<br>
+ref: https://www.kdnuggets.com/2021/10/introduction-autoencoder-variational-autoencoder-vae.html</p>
+<h1 id="关于modelfit">关于model.fit</h1>
+<pre><code>fit( x, y, batch_size=32, epochs=10, verbose=1, callbacks=None,
+validation_split=0.0, validation_data=None, shuffle=True, 
+class_weight=None, sample_weight=None, initial_epoch=0)
+</code></pre>
+<p>https://blog.csdn.net/weixin_41803874/article/details/88910726</p>
+<h1 id="seed设定">seed设定</h1>
+<p>import numpy<br>
+numpy.random.seed(7)</p>
+<h1 id="k-fold-cv">K-fold cv</h1>
+<p>将数据集分成k份，每一轮用其中(k-1)份做训练而剩余1份做验证，以这种方式执行k轮，得到k个模型．将k次的性能取平均，作为该算法的整体性能．k一般取值为5或者10．</p>
+<p>sklearn.model_selection提供了KFold以及RepeatedKFold, LeaveOneOut, LeavePOut, ShuffleSplit, StratifiedKFold, GroupKFold, TimeSeriesSplit等变体．</p>
+<p>下面的例子中用的StratifiedKFold采用的是分层抽样，它保证各类别的样本在切割后每一份小数据集中的比例都与原数据集中的比例相同．</p>
+<pre><code># apply on a training set (list, each element is a tensor, the first dimension is the data size)
+# label is one-dimensional
+# first shuffle
+def Kfold(input_data, labels, num_fold = 5):
+  n = len(labels)
+  shuffle_index = np.random.choice(range(n), size = n, replace = False)
+  shuffled_input = list(map(lambda x: x[shuffle_index,],input_data))
+  shuffled_labels = labels[shuffle_index]
+#   print(shuffled_input[1].shape)
+  
+  split_index = np.array_split(range(n), num_fold)
+#   print(split_index)
+  split_train_input = []
+  split_train_labels = []
+  split_test_input = []
+  split_test_labels = []
+  total_index = np.array(range(num_fold))
+  
+  for i in range(num_fold):
+    
+    split_test_input.append(list(map(lambda x: x[split_index[i],],shuffled_input)))
+    split_test_labels.append(shuffled_labels[split_index[i]])
+    
+    train_fold_index = np.delete(total_index, i)
+    train_index = np.concatenate([split_index[j] for j in range(num_fold) if j != i])
+    split_train_input.append(list(map(lambda x: x[train_index,],shuffled_input)))
+    split_train_labels.append(shuffled_labels[train_index])
+  
+  return(zip(split_train_input, split_train_labels,
+             split_test_input, split_test_labels))
+  
+
+kfold = Kfold([cdra_input_data,pep_input_data], labels, 5)
+
+
+# kfold = Kfold([cdra_input_data,pep_input_data], labels, 5)
+cvscores = []
+for train_input, train_labels, test_input, test_labels in kfold:
+  EPOCHS = 500
+
+  reset_all_weights(model)
+  history = model.fit(train_input, train_labels,
+                    epochs=EPOCHS, batch_size=128, verbose=0)
+
+  # evaluate the model
+  scores = model.evaluate(test_input, test_labels, verbose=0)
+  #   ['loss', 'auc', 'acc']
+  print(&quot;%s: %.2f%%&quot; % (model.metrics_names[1], scores[1]*100))
+  cvscores.append(scores[1] * 100)
+print(&quot;%.2f%% (+/- %.2f%%)&quot; % (np.mean(cvscores), np.std(cvscores)))
+</code></pre>
+<h1 id="fine-tune">fine tune</h1>
+<p>微调，一般把训练好的大模型直接拿过来，只再训练最后几层就行了</p>
+<pre><code># we chose to train the top 2 inception blocks, i.e. we will freeze
+# the first 249 layers and unfreeze the rest:
+for layer in model.layers[:249]:
+   layer.trainable = False
+for layer in model.layers[249:]:
+   layer.trainable = True
+</code></pre>
+<p>设置成non_trainable就行<br>
+大受启发！</p>
+<pre><code>from tensorflow.keras.applications.inception_v3 import InceptionV3
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
+
+# create the base pre-trained model
+base_model = InceptionV3(weights='imagenet', include_top=False)
+
+# add a global spatial average pooling layer
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+# let's add a fully-connected layer
+x = Dense(1024, activation='relu')(x)
+# and a logistic layer -- let's say we have 200 classes
+predictions = Dense(200, activation='softmax')(x)
+
+# this is the model we will train
+model = Model(inputs=base_model.input, outputs=predictions)
+
+# first: train only the top layers (which were randomly initialized)
+# i.e. freeze all convolutional InceptionV3 layers
+for layer in base_model.layers:
+    layer.trainable = False
+
+# compile the model (should be done *after* setting layers to non-trainable)
+model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+
+# train the model on the new data for a few epochs
+model.fit(...)
+
+# at this point, the top layers are well trained and we can start fine-tuning
+# convolutional layers from inception V3. We will freeze the bottom N layers
+# and train the remaining top layers.
+
+# let's visualize layer names and layer indices to see how many layers
+# we should freeze:
+for i, layer in enumerate(base_model.layers):
+   print(i, layer.name)
+
+# we chose to train the top 2 inception blocks, i.e. we will freeze
+# the first 249 layers and unfreeze the rest:
+for layer in model.layers[:249]:
+   layer.trainable = False
+for layer in model.layers[249:]:
+   layer.trainable = True
+
+# we need to recompile the model for these modifications to take effect
+# we use SGD with a low learning rate
+from tensorflow.keras.optimizers import SGD
+model.compile(optimizer=SGD(lr=0.0001, momentum=0.9), loss='categorical_crossentropy')
+
+# we train our model again (this time fine-tuning the top 2 inception blocks
+# alongside the top Dense layers
+model.fit(...)
+</code></pre>
+<h1 id="sequential-model">sequential model</h1>
+<h2 id="输入数据的格式">输入数据的格式</h2>
+<p>行代表observation，列还是代表variable<br>
+第一层要设置input_dim=8,</p>
+<pre><code>X = dataset[:,0:8]
+Y = dataset[:,8]
+# create model
+model = Sequential()
+model.add(Dense(12, input_dim=8, activation='relu'))
+</code></pre>
+<h2 id="常用modelsummary看各个层的输出">常用model.summary()看各个层的输出</h2>
+<p>none代表接受任意大小的batch</p>
+<h1 id="自定义层和loss还有metric">自定义层和loss还有metric</h1>
+<p>https://keras.io/guides/making_new_layers_and_models_via_subclassing/</p>
+<h1 id="concatenate-layer">Concatenate layer</h1>
+<pre><code>&gt;&gt;&gt; x1 = tf.keras.layers.Dense(8)(np.arange(10).reshape(5, 2))
+&gt;&gt;&gt; x2 = tf.keras.layers.Dense(8)(np.arange(10, 20).reshape(5, 2))
+&gt;&gt;&gt; concatted = tf.keras.layers.Concatenate()([x1, x2])
+&gt;&gt;&gt; concatted.shape
+TensorShape([5, 16])
+</code></pre>
+<h1 id="shuffle和validation_split">shuffle和validation_split</h1>
+<p>shuffle和validation_split的顺序<br>
+模型的fit函数有两个参数，shuffle用于将数据打乱，validation_split用于在没有提供验证集的时候，按一定比例从训练集中取出一部分作为验证集</p>
+<p>这里有个陷阱是，程序是先执行validation_split，再执行shuffle的，所以会出现这种情况：</p>
+<p>假如你的训练集是有序的，比方说正样本在前负样本在后，又设置了validation_split，那么你的验证集中很可能将全部是负样本</p>
+<p>同样的，这个东西不会有任何错误报出来，因为Keras不可能知道你的数据有没有经过shuffle，保险起见如果你的数据是没shuffle过的，最好手动shuffle一下</p>
+<h1 id="权重和状态重置">权重和状态重置</h1>
+<pre><code>def reset_all_weights(model):
+  for ix, layer in enumerate(model.layers):
+      if hasattr(model.layers[ix], 'kernel_initializer') and \
+              hasattr(model.layers[ix], 'bias_initializer'):
+          weight_initializer = model.layers[ix].kernel_initializer
+          bias_initializer = model.layers[ix].bias_initializer
+
+          old_weights, old_biases = model.layers[ix].get_weights()
+
+          model.layers[ix].set_weights([
+              weight_initializer(shape=old_weights.shape),
+              bias_initializer(shape=len(old_biases))])
+  model.reset_states()
+</code></pre>
+<p>每层的权重是在，你定义了这个层，并且用他去连接了上一层之后，权重就会初始化。</p>
+<pre><code>sss1 = Input(shape=(None, 3), 
+                       name='pep_inputs')
+sss3 = LSTM(256, return_state=True, 
+                    dropout=0.5, name='pep_bilstm')
+# x,_,_ = sss3(sss1)
+sss3.get_weights()
+</code></pre>
+<p>其实该像nettcr代码一样，在一个函数里去构造model，这样中间层就不会占内存，只有最后的model。每次要新的都call一个新的。</p>
+<h1 id="input">Input</h1>
+<p>Input(shape=(None, self.num_tokens))注意这个shape不包括batch size！！<br>
+https://keras.io/api/layers/core_layers/input/</p>
+<h1 id="predict">predict</h1>
+<p>model.predict的时候，单个向量要加batch size那一维</p>
+<h1 id="layer-arguments-and-call-arguments">layer arguments and call arguments</h1>
+<p>arguments 是创立对象时候的参数，call arguments是用这个已创立对象作用到input上的参数</p>
+<blockquote>
+<p>Call arguments(tf.keras.layers.GRU)</p>
+</blockquote>
+<ul>
+<li>inputs: A 3D tensor, with shape [batch, timesteps, feature].</li>
+<li>mask: Binary tensor of shape [samples, timesteps] indicating whether a given timestep should be masked (optional, defaults to None). An individual True entry indicates that the corresponding timestep should be utilized, while a False entry indicates that the corresponding timestep should be ignored.</li>
+<li>training: Python boolean indicating whether the layer should behave in training mode or in inference mode. This argument is passed to the cell when calling it. This is only relevant if dropout or recurrent_dropout is used (optional, defaults to None).</li>
+<li>initial_state: List of initial state tensors to be passed to the first call of the cell (optional, defaults to None which causes creation of zero-filled initial state tensors).</li>
+</ul>
+<h1 id="embedding">Embedding</h1>
+<p>Embedding 是在one-hot之前的，输入是word_index（1，2，3...）之类的矩阵<br>
+且要embedding，那么输入的维度要是固定的，也就是一定要先padding了</p>
+<h1 id="stacked-lstm">stacked LSTM</h1>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/t-cell-processing-and-immunogenicity-predictions/">
+              <h3 class="post-title">
+                下一篇：Immune
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

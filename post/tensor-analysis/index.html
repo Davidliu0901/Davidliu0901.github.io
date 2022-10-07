@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Tensor Analysis | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Tensor Analysis</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-03-29</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<p>Professor Anru Zhang.<br>
+Tensor regression, Tensor SVD.</p>
+<p>先定义了tensor的秩是啥（两种定义）</p>
+<p>给了ISLET的算法（主要还是将tensor转化为各个方向的矩阵，再用SVD之类的降维）</p>
+<p>除此之外还可以用cosine降维方法.</p>
+<p>举了ADHD的data例子，个人主页有matlab代码.</p>
+<p>Remark:<br>
+这个感觉对三维空间的data处理的比较好，如果其中一维是时间的话，没必要强行糅合成三维tensor.</p>
+<p>空间的NN？没必要定义每个层，所有点都是连接的？</p>
+<p>https://www.xiong99.com.cn/detail/v_605de6b1e4b09f6eae894226/3</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/difference-between-permutation-and-bootstrap/">
+              <h3 class="post-title">
+                下一篇：Difference between Permutation and Bootstrap
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

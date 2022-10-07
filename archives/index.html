@@ -1,0 +1,783 @@
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+        <div class="content-container">
+          
+          
+
+<div class="archives-container">
+  
+    <h2 class="year">2022</h2>
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/biopython/">
+            <h2 class="post-title">
+              Biopython
+              <small>2022-09-27</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/bwt-and-lf/">
+            <h2 class="post-title">
+              BWT &amp; LF
+              <small>2022-09-13</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/suffix-tree/">
+            <h2 class="post-title">
+              Suffix tree
+              <small>2022-09-13</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/illumating-blogs/">
+            <h2 class="post-title">
+              Illumating blogs
+              <small>2022-08-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/shell/">
+            <h2 class="post-title">
+              Linux
+              <small>2022-07-11</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/some-word-comparison/">
+            <h2 class="post-title">
+              Some Word Comparison
+              <small>2022-05-01</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/meme/">
+            <h2 class="post-title">
+              MEME
+              <small>2022-04-21</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/database/">
+            <h2 class="post-title">
+              Database
+              <small>2022-02-26</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/tcga/">
+            <h2 class="post-title">
+              TCGA
+              <small>2022-02-26</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/r-plot/">
+            <h2 class="post-title">
+              R plot
+              <small>2022-02-14</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/r-parallel/">
+            <h2 class="post-title">
+              R parallel
+              <small>2022-02-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/slurm/">
+            <h2 class="post-title">
+              Slurm
+              <small>2022-02-01</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/r-yi-ban-wen-ti/">
+            <h2 class="post-title">
+              R 一般问题
+              <small>2022-01-15</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/immunobiology-expert/">
+            <h2 class="post-title">
+              Immunobiology Expert
+              <small>2022-01-04</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    <h2 class="year">2021</h2>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/latex/">
+            <h2 class="post-title">
+              Latex
+              <small>2021-11-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/attension/">
+            <h2 class="post-title">
+              Attension
+              <small>2021-11-15</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/hmm/">
+            <h2 class="post-title">
+              HMM
+              <small>2021-11-10</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/vdj-recombination/">
+            <h2 class="post-title">
+              V(D)J recombination
+              <small>2021-09-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/keras/">
+            <h2 class="post-title">
+              Keras
+              <small>2021-09-18</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/t-cell-processing-and-immunogenicity-predictions/">
+            <h2 class="post-title">
+              Immune
+              <small>2021-09-14</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/vnpy/">
+            <h2 class="post-title">
+              VNPY
+              <small>2021-09-07</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/alphafold2-and-sequence-embedding/">
+            <h2 class="post-title">
+              AlphaFold2 and Sequence Embedding
+              <small>2021-08-31</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/hiv/">
+            <h2 class="post-title">
+              HIV
+              <small>2021-08-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/neoantigen/">
+            <h2 class="post-title">
+              Neoantigen
+              <small>2021-08-19</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/monte-carlo-tree-search/">
+            <h2 class="post-title">
+              Reinforcement Learning
+              <small>2021-08-10</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/kriging-gaussian-process-regression/">
+            <h2 class="post-title">
+              Kriging (Gaussian process regression)
+              <small>2021-08-10</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/pymc3/">
+            <h2 class="post-title">
+              PyMC3
+              <small>2021-08-09</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/variational-inference/">
+            <h2 class="post-title">
+              Variational Inference and comparison with EM, MCMC
+              <small>2021-08-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/python-yi-ban-wen-ti/">
+            <h2 class="post-title">
+              python 一般问题
+              <small>2021-08-04</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/jax/">
+            <h2 class="post-title">
+              JAX
+              <small>2021-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/how-to-use-jupyter-on-linux-server-windows/">
+            <h2 class="post-title">
+              How to use jupyter on linux server (windows)
+              <small>2021-08-02</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/a-tutorial-on-conformal-prediction/">
+            <h2 class="post-title">
+              A Tutorial on Conformal Prediction
+              <small>2021-07-22</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/assessing-sensitivity-to-the-stick-breaking-prior-in-bayesian-nonparametrics/">
+            <h2 class="post-title">
+              Assessing Sensitivity to the Stick-Breaking Prior in Bayesian Nonparametrics
+              <small>2021-07-19</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/what-are-the-most-important-statistical-ideas-of-the-past-50-years/">
+            <h2 class="post-title">
+              What are the Most Important Statistical Ideas of the Past 50 Years?
+              <small>2021-07-13</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/immunoinformatics-predicting-peptide-mhc-binding/">
+            <h2 class="post-title">
+              Immunoinformatics: Predicting Peptide–MHC Binding
+              <small>2021-06-11</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/deep-learning-from-a-statistical-perspective/">
+            <h2 class="post-title">
+              Deep Learning from a Statistical Perspective
+              <small>2021-03-29</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/tensor-analysis/">
+            <h2 class="post-title">
+              Tensor Analysis
+              <small>2021-03-29</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/difference-between-permutation-and-bootstrap/">
+            <h2 class="post-title">
+              Difference between Permutation and Bootstrap
+              <small>2021-03-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/limittheoremsinchange-pointanalysis/">
+            <h2 class="post-title">
+              Limit+Theorems+in+Change-Point+Analysis
+              <small>2021-02-19</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/limit-theorem-for-maximum-of-standardized-u-statistics-with-an-application/">
+            <h2 class="post-title">
+              Limit theorem for maximum of standardized U-statistics with an application
+              <small>2021-02-18</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/a-comparative-in-silico-linear-b-cell-epitope-prediction-and-characterization-for-south-american-and-african-trypanosoma-vivax-strains/">
+            <h2 class="post-title">
+              A comparative in silico linear B-cell epitope prediction and characterization for South American and African Trypanosoma vivax strains
+              <small>2021-02-16</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/modern-multidimensional-scaling/">
+            <h2 class="post-title">
+              Modern Multidimensional Scaling
+              <small>2021-02-14</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/an-introduction-to-b-cell-epitope-mapping-and-in-silico-epitope-prediction/">
+            <h2 class="post-title">
+              An Introduction to B-Cell Epitope Mapping and In Silico Epitope Prediction
+              <small>2021-02-08</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/tikz/">
+            <h2 class="post-title">
+              Tikz
+              <small>2021-02-06</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/a-nonparametric-approach-for-multiple-change-point-analysis-of-multivariate-data/">
+            <h2 class="post-title">
+              A Nonparametric Approach for Multiple Change Point Analysis of Multivariate Data
+              <small>2021-02-05</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/wild-binary-segmentation-for-multiple-change-point-detection/">
+            <h2 class="post-title">
+              Wild binary segmentation for multiple change-point detection
+              <small>2021-01-25</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/sequential-change-point-detection-based-on-nearest-neighbors/">
+            <h2 class="post-title">
+              Sequential change-point detection based on nearest neighbors
+              <small>2021-01-20</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/multivariate-and-multiple-permutation-tests/">
+            <h2 class="post-title">
+              Asymptotic distribution-free change-point detection for multivariate and non-Euclidean data
+              <small>2021-01-20</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/a-survey-of-methods-for-time-series-change-point-detection/">
+            <h2 class="post-title">
+              A survey of methods for time series change point detection
+              <small>2021-01-19</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+      
+        <article class="post">
+          <a href="https://https://davidliu0901.github.io/post/on-clustering-network-valued-data/">
+            <h2 class="post-title">
+              On clustering network-valued data
+              <small>2021-01-16</small>
+            </h2>
+          </a>
+        </article>
+      
+    
+  
+</div>
+
+
+        </div>
+
+        <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+      </div>
+      <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+    </div>
+  </body>
+</html>

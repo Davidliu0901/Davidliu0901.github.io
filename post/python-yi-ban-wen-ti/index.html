@@ -1,0 +1,639 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>python 一般问题 | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">python 一般问题</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-08-04</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<p>从0开始的哦！<br>
+索引是到最后一个的之前！！最后一个不算！<br>
+df.iloc[0:4]和df.loc[0:4]有区别哦；后面那个好像认为是字符串的0到4？</p>
+<pre><code>#len(trace) = n
+trace[:n]        #right
+trace[n]        #error
+</code></pre>
+<p>可以理解成取前n个。</p>
+<h1 id="string">string</h1>
+<p>string.index() 找特定子串</p>
+<h1 id="除了第i个元素">除了第i个元素</h1>
+<pre><code>a = np.array([2,3,1,3])
+np.delete(a, [1,2])
+</code></pre>
+<h1 id="list-多个索引">list 多个索引</h1>
+<pre><code>
+list1 = [1,1,1,2,3,4,5,8,8] # 原始列表
+index_to_delete = [0, 4, 6] # 需要同时删除的索引位置
+list1 = [list1[i] for i in range(0, len(list1), 1) if i not in index_to_delete] # 删除后的列表
+ 
+# 这样处理过后的list就是同时删除了特定索引位置元素的list
+[1, 1, 2, 4, 8, 8]
+</code></pre>
+<h1 id="index-转换成字符串">index 转换成字符串</h1>
+<pre><code>token_index = {'g': 1, 'v': 2, 's': 3, 'l': 4, 'a': 5, 't': 6, 'f': 7, 'q': 8 'p': 9, 'n': 10, 'y': 11, 'e': 12, 'i': 13, 'm': 14, 'r': 15, 'd': 16, 'h': 17, 'k': 18, 'w': 19, 'c': 20}
+res = {v: k for k, v in token_index.items()}
+list(map(lambda x: ''.join([res[value] for value in x]).upper(), cdra))
+</code></pre>
+<p>https://www.coder.work/article/2439551</p>
+<h1 id="反转字典">反转字典</h1>
+<pre><code>m = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+res = {v: k for k, v in m.items()}
+</code></pre>
+<h1 id="mapfilterreducezip">map，filter，reduce，zip</h1>
+<p>基础语法：map(fun, iterable)<br>
+参数：fun是map传递给定可迭代序列的每个元素的函数。iterable是一个可以迭代的序列，序列中的每一个元素都可以执行fun</p>
+<p>基础语法：filter(fun, iterable)<br>
+参数：fun测试iterable序列中的每个元素执行结果是否为True，iterable为被过滤的可迭代序列</p>
+<p>基础语法：reduce(function, iterable)<br>
+参数：fun是连续作用于iterable每一个元素的方法，新的参数为上一次执行的结果，iterable为被过滤的可迭代序列</p>
+<pre><code>name = [ &quot;xiaobai&quot;, &quot;john&quot;, &quot;mike&quot;, &quot;alpha&quot; ]
+age = [ 4, 1, 3, 2 ]
+marks = [ 40, 50, 60, 70 ]
+
+# using zip() to map values
+mapped = list(zip(name, age, marks))
+print (&quot;The zipped result is : &quot;mapped)
+
+Out：The zipped result is : [('xiaobai', 4, 40), ('john', 1, 50), ('mike', 3, 60), ('alpha', 2, 70)]
+</code></pre>
+<p>https://segmentfault.com/a/1190000018114755</p>
+<h1 id="set">set</h1>
+<p>无序的注意是</p>
+<pre><code>t = {'a', 'b'}
+print(t)
+
+'b' 'a'
+</code></pre>
+<p>add, remove, in, update, clear</p>
+<h1 id="dictionary">dictionary</h1>
+<p>dict = {'a': 1, 'b': 2, 'b': '3'}</p>
+<h1 id="pandas">Pandas</h1>
+<h2 id="统计词频">统计词频</h2>
+<p>pd.value_counts</p>
+<h2 id="readcsv将字符串中的na不解释为nan">read.csv将字符串中的“NA”不解释为NaN</h2>
+<p>keep_default_na =False</p>
+<h2 id="group_by">group_by</h2>
+<p>https://zhuanlan.zhihu.com/p/101284491</p>
+<h2 id="数据框">数据框</h2>
+<pre><code>
+# 从np.array 转换为 pd.DataFrame
+data = np.array([['','Col1','Col2'],
+                ['Row1',1,2],
+                ['Row2',3,4]])
+ 
+pd.DataFrame(data=data[1:,1:],
+             index=data[1:,0],
+             columns=data[0,1:])
+ 
+#      Col1 Col2
+# Row1    1    2
+# Row2    3    4
+ 
+# 直接采用字典做参数
+my_dict = {1: ['1', '3'], 2: ['1', '2'], 3: ['2', '4']}
+print(pd.DataFrame(my_dict))
+#    1  2  3
+# 0  1  1  2
+# 1  3  2  4
+ 
+# 用一个DataFrame做输入参数
+my_df = pd.DataFrame(data=[4,5,6,7], index=range(0,4), columns=['A'])
+print(pd.DataFrame(my_df))
+#    A
+# 0  4
+# 1  5
+# 2  6
+# 3  7
+ 
+# 输入一个Series
+my_series = pd.Series({&quot;United Kingdom&quot;:&quot;London&quot;, &quot;India&quot;:&quot;New Delhi&quot;, &quot;United States&quot;:&quot;Washington&quot;, &quot;Belgium&quot;:&quot;Brussels&quot;})
+print(pd.DataFrame(my_series))
+#                          0
+# Belgium           Brussels
+# India            New Delhi
+# United Kingdom      London
+
+</code></pre>
+<p>索引<br>
+https://zhuanlan.zhihu.com/p/164489588<br>
+https://www.jb51.net/article/187455.htm<br>
+相减如果有index，那么是对应index相减，应该用.shift()</p>
+<h2 id="rolling">rolling</h2>
+<p>数据框的rolling函数，window：表示时间窗的大小，有两种形式：<br>
+1）使用数值int，则表示观测值的数量，即向前几个数据；<br>
+2）也可以使用offset类型，这种类型较复杂，使用场景较少，此处暂不做介绍；<br>
+min_periods：每个窗口最少包含的观测值数量，小于这个值的窗口结果为NA。值可以是int，默认None。offset情况下，默认为1；<br>
+center: 把窗口的标签设置为居中，布尔型，默认False，居右<br>
+win_type: 窗口的类型。截取窗的各种函数。字符串类型，默认为None；<br>
+on: 可选参数。对于dataframe而言，指定要计算滚动窗口的列。值为列名。<br>
+axis: 默认为0，即对列进行计算</p>
+<pre><code>import pandas as pd
+amount = pd.Series([100, 90, 110, 150, 110, 130, 80, 90, 100, 150])
+print(
+    amount.rolling(3, min_periods=2).agg(
+        lambda x: sum(x)
+    )
+)
+df2.rolling(2, min_periods=1)[&quot;amount&quot;].apply(lambda x: sum(x)/100, raw=False)
+</code></pre>
+<p>https://www.cnblogs.com/traditional/p/13776180.html<br>
+https://www.jianshu.com/p/b8c795345e93</p>
+<h1 id="赋值-ab">赋值 a=b</h1>
+<p>其实都是传地址</p>
+<pre><code>b = [1,2]
+c = b
+c.append(2)
+b
+
+[1, 2, 2]
+</code></pre>
+<h1 id="reset">%reset</h1>
+<p>%reset -f 不需要同意</p>
+<pre><code>from IPython import get_ipython
+get_ipython().magic('reset -sf')
+</code></pre>
+<h1 id="循环">循环</h1>
+<pre><code>fruits = ['banana', 'apple',  'mango']
+for index in range(len(fruits)):
+   print ('当前水果 : %s' % fruits[index])
+</code></pre>
+<h1 id="定义函数">定义函数</h1>
+<pre><code>def functionname( parameters ):
+   &quot;函数_文档字符串&quot;
+   function_suite
+   return [expression]
+</code></pre>
+<p>*代表接受不定长的未命名参数；**代表接受不定长的命名参数</p>
+<h1 id="with-as">with-as</h1>
+<p>with 语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源，比如文件使用后自动关闭／线程中锁的自动获取和释放等。</p>
+<p>紧跟with后面的语句被求值后，返回对象的enter()方法被调用，这个方法的返回值将被赋值给as后面的变量。当with后面的代码块全部被执行完之后，将调用前面返回对象的exit()方法。</p>
+<pre><code>class Sample:
+    def __enter__(self):
+        print &quot;in __enter__&quot;
+        return &quot;Foo&quot;
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print &quot;in __exit__&quot;
+def get_sample():
+    return Sample()
+with get_sample() as sample:
+    print &quot;Sample: &quot;, sample
+</code></pre>
+<pre><code>in __enter__
+Sample:  Foo
+in __exit__
+</code></pre>
+<p>https://blog.csdn.net/u012609509/article/details/72911564</p>
+<h1 id="try">try</h1>
+<p>try/except语句用来检测try语句块中的错误，从而让except语句捕获异常信息并处理。</p>
+<pre><code>try:
+&lt;语句&gt;        #运行别的代码
+except &lt;名字&gt;： #不加名字则报错就执行
+&lt;语句&gt;        #如果在try部份引发了'name'异常
+except &lt;名字&gt;，&lt;数据&gt;:
+&lt;语句&gt;        #如果引发了'name'异常，获得附加的数据
+else:
+&lt;语句&gt;        #如果没有异常发生
+</code></pre>
+<p>可以指定各种error<br>
+https://www.runoob.com/python/python-exceptions.html</p>
+<h1 id="decorator">decorator@</h1>
+<p>B函数作为@后面的A函数的入参，这种操作的返回（这两部操作也组成一个函数）作为B函数的实际功能。</p>
+<pre><code>@A
+def B(args):
+      pass
+</code></pre>
+<p>这时的B函数，其实是A(B)<br>
+https://blog.csdn.net/qq_36810398/article/details/103667836</p>
+<h1 id="numpy">numpy</h1>
+<h2 id="nprandomseed2021">np.random.seed(2021)</h2>
+<p>放在最开始</p>
+<h2 id="nprandomchoicerange1020replace-true">np.random.choice(range(10),20,replace = True)</h2>
+<p>随机采样</p>
+<h2 id="nprandomnormal">np.random.normal</h2>
+<h2 id="nparray">np.array</h2>
+<p>一维的一个括号，二维多个括号</p>
+<pre><code>a = np.array([[2,3,4],
+              [1,2,1],
+             [1,2,3]])
+b = np.array([1,0,1])
+c = np.array([[1,0,1]])
+print(np.dot(a,b),np.dot(b,a),
+      np.dot(c,a))
+</code></pre>
+<p>[6 2 4] [3 5 7] [[3 5 7]]也就是说，向量可以乘以矩阵，得到的结果还是向量。一维矩阵得到的结果还是矩阵。<br>
+向量可以左乘变成行向量，右乘变成列向量，但是一维矩阵不可以。<br>
+a.ndim 可以看是几维数组，a.shape可以看各个维度的尺度，size看元素数量。<br>
+a.T直接转置</p>
+<h2 id="点乘当然python的npdot是矩阵乘法">点乘(当然python的np.dot是矩阵乘法)</h2>
+<p>如果一个向量乘以一个高维array，那么是直接作用在array的最后一维上(最后一维长度要跟向量长度一致)，比如向量乘以矩阵，相当于矩阵的每一行都乘以这个vector</p>
+<pre><code>a = np.ones([2,2,2])
+b = np.array([1,2])
+(a*b)[:,:,0]
+
+# a[:,:,0] = b[0]*a[:,:,0]
+# a[:,:,1] = b[1]*a[:,:,1]
+</code></pre>
+<h2 id="nptile">np.tile</h2>
+<p>把数组按规定方向复制</p>
+<pre><code>a = np.array([1,2,3])
+np.tile(a.reshape(-1,1),(1,3))
+</code></pre>
+<h2 id="切片和索引">切片和索引</h2>
+<p>a[1:4] ，a[ : 6: 2] 每间隔两个取一个数<br>
+a[:-1] 最后一个不要</p>
+<h2 id="nparange24reshape234">np.arange(24).reshape(2,3,4)</h2>
+<p>从0开始，每行每行的填充，resize是inplace用法，<br>
+array([[[ 0,  1,  2,  3],<br>
+[ 4,  5,  6,  7],<br>
+[ 8,  9, 10, 11]],</p>
+<pre><code>   [[12, 13, 14, 15],
+    [16, 17, 18, 19],
+    [20, 21, 22, 23]]])
+</code></pre>
+<h2 id="flattenordercravel">.flatten(order='C')，.ravel()</h2>
+<p>打平成向量</p>
+<pre><code>‘C’ means to flatten in row-major (C-style) order. ‘F’ means to flatten in column-major (Fortran- style) order. ‘A’ means to flatten in column-major order if a is Fortran contiguous in memory, row-major order otherwise. ‘K’ means to flatten a in the order the elements occur in memory. 
+a = np.array([[1,2,3], [4,5,6], [7,8,9]])
+# a = a/a.sum()
+print(a)
+print(a.flatten())
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+[1 2 3 4 5 6 7 8 9]
+</code></pre>
+<h2 id="recover-index-from-flatten-vector">recover index from flatten vector</h2>
+<pre><code>np.unravel_index([22, 41, 37], (7,6))
+(array([3, 6, 6]), array([4, 5, 1]))
+</code></pre>
+<h2 id="bshape26">b.shape=(2,6)</h2>
+<p>用tuple指定数组的形状</p>
+<h2 id="nphstack">np.hstack</h2>
+<p>（cbind）</p>
+<h2 id="npvstack">np.vstack</h2>
+<p>（rbind）</p>
+<h1 id="import-scipystats-as-st">import scipy.stats as st</h1>
+<h2 id="stnormpdfx-loc-mu-scale-sigma">st.norm.pdf(x, loc = mu, scale = sigma)</h2>
+<h1 id="partial">partial</h1>
+<p>partial的用法，可以固定parameter</p>
+<pre><code>predictions = vmap(partial(predict, params))(input_batch)
+</code></pre>
+<p>更详细的介绍: https://zhuanlan.zhihu.com/p/47124891</p>
+<h1 id="private-variable-成员变量">private variable (成员变量)</h1>
+<pre><code>class test():
+    # self indicates the unique instance instead of a class
+    # use test.cons to call the group variable
+    cons = 1
+    def __init__(self):
+        self.cons = 2
+        # print(cons) will raise error
+        # because we did not transfer the cons
+        print(test.cons)
+        pass
+
+    def ss(self):
+        print(test.cons)
+        print(self.cons)
+
+    print(cons)
+
+a = test()
+print('class ',test.cons)
+print('instance ',a.cons)
+a.ss()
+</code></pre>
+<p>self是指代的instance，想要访问类的公有变量，请使用class.cons</p>
+<pre><code>1
+1
+class  1
+instance  2
+1
+2
+</code></pre>
+<p>并且在类里面不能直接引用公有变量，很神奇! 只有全局函数能直接引用全局变量</p>
+<pre><code>a = 1
+def test2():
+    print(a)
+test2()
+
+1
+</code></pre>
+<h1 id="class-variable-类变量">class variable (类变量)</h1>
+<p>我震惊了，居然class里面的命令自动运行，即使没有initial，看来initial只是针对实例，类是无论如何都会直接运行的。所以说类定义框和函数不一样，不能重复运行，你每运行过一个含有class的，class的类变量和命令都会自动运行一遍。</p>
+<pre><code>%reset -f
+class test1():
+    # self indicates the unique instance instead of a class
+    # use test.cons to call the group variable
+    cons = 1
+    def __init__(self):
+        self.cons = 2
+        pass
+
+    def ss():
+        test1.cons = test1.cons + 1
+
+    print(cons)
+
+# a = test1()
+# test1.ss()
+# print(test1.cons)
+# test1.ss()
+# print(test1.cons)
+test1.cons
+</code></pre>
+<p>如果把上述类的定义和下面引用拆开，test1.ss()一直运行，那么test.cons的值会一直增加</p>
+<pre><code>%reset -f
+class test1():
+    # self indicates the unique instance instead of a class
+    # use test.cons to call the group variable
+    cons = 1
+    def __init__(self):
+        self.cons = 2
+        pass
+
+    def ss():
+        test1.cons = test1.cons + 1
+</code></pre>
+<pre><code>test1.ss()
+print(test1.cons)
+test1.ss()
+print(test1.cons)
+</code></pre>
+<h1 id="类变量赋值以及遍历">类变量赋值以及遍历</h1>
+<p>setattr(x, 'y', v) is equivalent to ``x.y = v''</p>
+<pre><code>def update_setting(self, setting: dict):
+    &quot;&quot;&quot;
+    Update strategy parameter wtih value in setting dict.
+    &quot;&quot;&quot;
+    for name in self.parameters:
+        if name in setting:
+            setattr(self, name, setting[name])
+</code></pre>
+<p>如果要遍历类中的一些函数，可以用getattr</p>
+<pre><code>b = 'asss'
+getattr(A, b)
+# A.asss
+</code></pre>
+<h1 id="函数返回多个值">函数返回多个值</h1>
+<p>返回列表要接受的话必须跟列表长度一直，不然就是接受tuple了</p>
+<pre><code>def aa():
+    a = 1
+    b = 2
+    c = 3
+    return [[a,b],b,c]
+    return a, b
+
+a,b,_ = aa()
+c = aa()
+a
+c
+</code></pre>
+<p>函数有些时候会返回只包含一个元素的列表，这时可以用下划线来返回其中的元素，而不是列表</p>
+<pre><code>a, _ = func(...)
+</code></pre>
+<h1 id="画图matplotlibpyplot">画图matplotlib.pyplot</h1>
+<p>https://lijin-thu.github.io/06.%20matplotlib/06.01%20pyplot%20tutorial.html<br>
+在notebook里面不需要plt.show()，会自动显示，除非你用了plt.close()，直接把当前的活动figure关了，则这块代码运行完之后，没有这个活动的figure了，notebook不会自动画图了（当然前面可以加命令plt.show()，这样用close也可以画）。要注意在plt.show()之前保存到pdf中，不然图像就没有了。跟R不同的是，要注意关闭pdf.close()</p>
+<pre><code>import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+pdf = PdfPages('../simulation_result/c_simulation_%s_%s.pdf'%(initial_n+initial_n*negative_times,negative_times))
+
+# 绘制训练 &amp; 验证的准确率值
+
+plt.figure()
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('Model accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper left')
+pdf.savefig()
+# plt.show()
+plt.close()
+
+# 绘制训练 &amp; 验证的损失值
+plt.figure()
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Test'], loc='upper left')
+pdf.savefig()
+# plt.show()
+plt.close()
+pdf.close()
+</code></pre>
+<p>或者直接plt.figure, 画完plt.save(.pdf), 再plt.close()</p>
+<pre><code>ls = []
+plt_labels = []
+for i in range(10):
+    temp_lik = pd.read_csv(lik_path, sep=',')
+    temp_l, =  plt.plot(temp_lik)
+    ls.append(temp_l)
+    plt_labels.append('epi'+str(epi)+'_delta'+str(delta)+'_tau'+str(tau))
+
+temp_l = plt.axhline(y=real_total_lik)
+ls.append(temp_l)
+plt_labels.append('real')
+plt.legend(handles=ls,labels=plt_labels,loc='lower left',
+                 bbox_to_anchor=(1, 0))
+
+ax = plt.gca()
+ax.ticklabel_format(style='sci', scilimits=(-1,2), axis='y')
+plt.savefig(os.path.join(ana_store_path, case_name+ 'lik_trace.pdf'))
+plt.close()
+</code></pre>
+<h1 id="npnan">np.nan</h1>
+<p>要小心</p>
+<pre><code>np.nan==np.nan
+False
+</code></pre>
+<h1 id="pandas-读取csv">pandas 读取csv</h1>
+<p>注意一般mixtype 是读取object</p>
+<h1 id="逻辑和">逻辑和</h1>
+<p>np.logical_and.reduce处理三个以上的逻辑vector</p>
+<h1 id="清洗数据">清洗数据</h1>
+<pre><code>def cleaning(s):
+  digit_check = not any(i.isdigit() for i in s)
+  symbol_check = (' ' not in s) and ('+' not in s) and (',' not in s) and ('-' not in s) and ('*' not in s)
+  result = (digit_check and symbol_check)
+  return(result)
+</code></pre>
+<p>允许读取'NA'</p>
+<pre><code>keep_default_na=False
+</code></pre>
+<h1 id="type-check">type check</h1>
+<pre><code>l = ss['CDR3b'].values
+[i for i in range(len(l)) if type(l[i]) is not str]
+</code></pre>
+<h1 id="function函数传参数地址或值">function函数传参数，地址或值</h1>
+<p>Python不允许程序员选择采用传值还是传引用。Python参数传递采用的肯定是“传对象引用”的方式。实际上，这种方式相当于传值和传引用的一种综合。如果函数收到的是一个可变对象（比如字典或者列表）的引用，就能修改对象的原始值——相当于通过“传引用”来传递对象。如果函数收到的是一个不可变对象（比如数字、字符或者元组）的引用，就不能直接修改原始对象——相当于通过“传值”来传递对象。</p>
+<p>当人们复制列表或字典时，就复制了对象列表的引用同，如果改变引用的值，则修改了原始的参数。</p>
+<p>为了简化内存管理，Python通过引用计数 机制实现自动垃圾回收功能，Python中的每个对象都有一个引用计数，用来计数该对象在不同场所分别被引用了多少次。每当引用一次Python对象，相应的引用计数就增1，每当消毁一次Python对象，则相应的引用就减1，只有当引用计数为零时，才真正从内存中删除Python对象。</p>
+<p>上面也就是说，当我们传的参数是int、字符串(string)、float、（数值型number）、元组（tuple) 时，无论函数中对其做什么操作，都不会改变函数外这个参数的值；</p>
+<p>当传的是字典型(dictionary)、列表型(list)、数组(array)、数据框(dataframe)时，如果是重新对其进行赋值，则不会改变函数外参数的值，如果是对其进行操作，则会改变。</p>
+<pre><code>a = np.array([1,2,3])
+def test(data):
+  data[0] = 0
+test(a)
+a
+array([0, 2, 3])
+</code></pre>
+<ul>
+<li>R 只传值</li>
+</ul>
+<h1 id="继承和多态">继承和多态</h1>
+<p>https://www.liaoxuefeng.com/wiki/1016959663602400/1017497232674368</p>
+<h1 id="super">super</h1>
+<p>调用父类</p>
+<pre><code>class A:
+     def add(self, x):
+         y = x+1
+         print(y)
+class B(A):
+    def add(self, x):
+        super().add(x)
+b = B()
+b.add(2)  # 3
+</code></pre>
+<p>python2 是super(B, self)</p>
+<h1 id="parallel-computing">parallel computing</h1>
+<h1 id="模块下的__init__">模块下的__init__</h1>
+<p>https://www.cnblogs.com/blueskyyj/p/9415087.html</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/jax/">
+              <h3 class="post-title">
+                下一篇：JAX
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

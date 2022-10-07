@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Slurm | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Slurm</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2022-02-01</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<p>Tutorial:<br>
+CHPC Tutorial: https://www.youtube.com/watch?v=Cu6C5lNLDAY&amp;list=PLPPvrxDFPZ41KLWMqqDJuXGs_kV7Juxkw&amp;index=5</p>
+<p>PKU: https://bicmr.pku.edu.cn/~wenzw/pages/conda.html</p>
+<h1 id="sstat">sstat</h1>
+<p>job还在运行中</p>
+<pre><code>sstat  --format=AveCPU,AvePages,AveRSS,AveVMSize,MaxRSS,JobID -j xxx 
+</code></pre>
+<p>MaxRSS 看最大内存，单位是byte：Maximum resident set size of all tasks in job. 这个job曾经使用的最大内存；并不是srun要求的mem大小</p>
+<h1 id="sacct">sacct</h1>
+<p>job已经运行完了</p>
+<pre><code>sacct -o MaxRSS -j 129086
+</code></pre>
+<pre><code>sacct -a -X --format=Priority,User%20,JobID,JobName,Account,AllocCPUs,State,NNodes,NodeList,Submit,QOS | sed -n &quot;1,2p;/stat/p&quot; | grep &lt;your_ID&gt;
+
+sacct -a -X -S now-3days --format=Priority,User%20,JobID,JobName,Account,AllocCPUs,State,NNodes,NodeList,Submit,QOS | sed -n &quot;1,2p;/stat/p&quot; | grep &lt;your_ID&gt;
+</code></pre>
+<h1 id="scontrol">scontrol</h1>
+<pre><code>scontrol show job 368087
+</code></pre>
+<p>看job运行情况（最大结束时间之类的）</p>
+<pre><code>scontrol show node xxx
+</code></pre>
+<h1 id="batch-scripting">Batch Scripting</h1>
+<p>%j 写在脚本里，可以变成job id</p>
+<h1 id="内存">内存</h1>
+<p>Terms<br>
+VSS- Virtual Set Size 虚拟耗用内存（包含共享库占用的内存）<br>
+RSS- Resident Set Size 实际使用物理内存（包含共享库占用的内存）<br>
+PSS- Proportional Set Size 实际使用的物理内存（比例分配共享库占用的内存）<br>
+USS- Unique Set Size 进程独自占用的物理内存（不包含共享库占用的内存）<br>
+一般来说内存占用大小有如下规律：VSS &gt;= RSS &gt;= PSS &gt;= USS<br>
+https://blog.csdn.net/adaptiver/article/details/7084364<br>
+https://its.unc.edu/research-computing/techdocs/monitoring-memory-usage/</p>
+<h1 id="srun">srun</h1>
+<p>无限制内存，先到先占</p>
+<pre><code>srun -p stat -q stat -w chpc-cn117 -c 2 -mem=40G --pty bash
+</code></pre>
+<h1 id="sinfo">sinfo</h1>
+<p>各个节点的状态</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/r-yi-ban-wen-ti/">
+              <h3 class="post-title">
+                下一篇：R 一般问题
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

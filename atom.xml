@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://https://davidliu0901.github.io/</id>
+    <title>Dwoooh</title>
+    <updated>2022-10-07T06:15:38.996Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://https://davidliu0901.github.io/"/>
+    <link rel="self" href="https://https://davidliu0901.github.io/atom.xml"/>
+    <logo>https://https://davidliu0901.github.io/images/avatar.png</logo>
+    <icon>https://https://davidliu0901.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Dwoooh</rights>
+    <entry>
+        <title type="html"><![CDATA[Biopython]]></title>
+        <id>https://https://davidliu0901.github.io/post/biopython/</id>
+        <link href="https://https://davidliu0901.github.io/post/biopython/">
+        </link>
+        <updated>2022-09-27T06:27:58.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="pdb">PDB</h1>
+<h2 id="pdbparser">PDBParser</h2>
+<p>The PERMISSIVE flag indicates that a number of common problems (see 11.7.1) associated with PDB files will be ignored (but note that some atoms and/or residues will be missing). If the flag is not present a PDBConstructionException will be generated if any problems are detected during the parse operation.</p>
+<pre><code>p = PDBParser(PERMISSIVE=1)
+</code></pre>
+<h2 id="parse_pdb_header">parse_pdb_header</h2>
+<p>Extract the header information</p>
+<pre><code>from Bio.PDB.parse_pdb_header import parse_pdb_header
+parse_pdb_header('../data/temp/4may.pdb')['compound']
+</code></pre>
+<h2 id="get_">get_...</h2>
+<p><code>.get_list() </code> a copy of child list<br>
+<code>.get_atom</code> a copy of all atom information (generator)<br>
+<code>.has_id</code> You can check if the entity has a child with a given id by using the has_id method.</p>
+<h2 id="atom">atom</h2>
+<p>The atomic data stored includes the atom name, the atomic coordinates (including standard deviation if present), the B factor (including anisotropic B factors and standard deviation if present), the altloc specifier and the full atom name including spaces. Less used items like the atom element number or the atomic charge sometimes specified in a PDB file are not stored.</p>
+<p>To manipulate the atomic coordinates, use the <code>transform</code> method of the Atom object. Use the <code>set_coord</code> method to specify the atomic coordinates directly.</p>
+<pre><code>&gt;&gt;&gt; a.get_name()       # atom name (spaces stripped, e.g. &quot;CA&quot;)
+&gt;&gt;&gt; a.get_id()         # id (equals atom name)
+&gt;&gt;&gt; a.get_coord()      # atomic coordinates
+&gt;&gt;&gt; a.get_vector()     # atomic coordinates as Vector object
+&gt;&gt;&gt; a.get_bfactor()    # isotropic B factor
+&gt;&gt;&gt; a.get_occupancy()  # occupancy
+&gt;&gt;&gt; a.get_altloc()     # alternative location specifier
+&gt;&gt;&gt; a.get_sigatm()     # standard deviation of atomic parameters
+&gt;&gt;&gt; a.get_siguij()     # standard deviation of anisotropic B factor
+&gt;&gt;&gt; a.get_anisou()     # anisotropic B factor
+&gt;&gt;&gt; a.get_fullname()   # atom name (with spaces, e.g. &quot;.CA.&quot;)
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[BWT & LF]]></title>
+        <id>https://https://davidliu0901.github.io/post/bwt-and-lf/</id>
+        <link href="https://https://davidliu0901.github.io/post/bwt-and-lf/">
+        </link>
+        <updated>2022-09-13T02:09:17.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>for DNA<br>
+burrow wheeler transform<br>
+LF mapping<br>
+mapping 讲的是如何把read找到是在哪个genome上的</p>
+<figure data-type="image" tabindex="1"><img src="https://https://davidliu0901.github.io//post-images/1663036723602.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Suffix tree]]></title>
+        <id>https://https://davidliu0901.github.io/post/suffix-tree/</id>
+        <link href="https://https://davidliu0901.github.io/post/suffix-tree/">
+        </link>
+        <updated>2022-09-13T01:19:46.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>for RNA</p>
+<p>字典树（Trie）<br>
+Trie 将关键词中的字符按顺序添加到树中的节点上，这样从根节点开始遍历，就可以确定指定的关键词是否存在于 Trie 中。<br>
+后缀树（Suffix Tree）则首先是一棵 Compressed Trie<br>
+https://www.cnblogs.com/gaochundong/p/suffix_tree.html</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Illumating blogs]]></title>
+        <id>https://https://davidliu0901.github.io/post/illumating-blogs/</id>
+        <link href="https://https://davidliu0901.github.io/post/illumating-blogs/">
+        </link>
+        <updated>2022-08-25T02:34:43.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="ryan-giordano-statistician">Ryan Giordano, statistician.</h1>
+<p>Ryan is currently a postdoc in computer science with Tamara Broderick’s group at MIT. He received his PhD in statistics from UC Berkeley, where he was advised by Michael Jordan, Tamara Broderick, and Jon McAuliffe. He has additionally earned an MSc with distinction in econometrics and mathematical economics from the London School of Economics and undergraduate degrees in mathematics and theoretical and applied mechanics from the University of Illinois in Urbana-Champaign. In between studies, Ryan has worked as an engineer for Google and HP and served for two years as an education volunteer in the US Peace Corps in Kazakhstan. His research interests include machine learning, variational inference, Bayesian methods, and robustness quantification, as well as an amateur interest in the philosophy of science.<br>
+https://rgiordan.github.io/about/</p>
+<p>A good tutorial for Bayesian CLT.<br>
+https://rgiordan.github.io/bayes/2020/12/03/bvm.html<br>
+https://rgiordan.github.io/bayes/2021/03/06/bvm_pt2.html</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Linux]]></title>
+        <id>https://https://davidliu0901.github.io/post/shell/</id>
+        <link href="https://https://davidliu0901.github.io/post/shell/">
+        </link>
+        <updated>2022-07-11T04:25:56.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="数组和循环">数组和循环</h1>
+<p>https://doc.yonyoucloud.com/doc/wiki/project/linux-command/chap36.html</p>
+<h1 id="ps">ps</h1>
+<p>show all process</p>
+<h1 id="kill-all">kill all</h1>
+<p>killall -u project12</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Some Word Comparison]]></title>
+        <id>https://https://davidliu0901.github.io/post/some-word-comparison/</id>
+        <link href="https://https://davidliu0901.github.io/post/some-word-comparison/">
+        </link>
+        <updated>2022-05-01T04:29:32.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="measure-or-measurement">measure or measurement</h1>
+<p>measure 可能不是通常意义的一种数字<br>
+<code>Philosophers have long pondered the true measure of a man.</code><br>
+例子<br>
+<code>The measure of this algorithm's performance is its execution time. Therefore, our testing suite gathers measurements of the execution under different runtime conditions. Our testing suite itself adds overhead that will not be present in a deployment environment, however, and this must not be forgotten when we analyze its measure(s/ment/ments) of the underlying algorithm's performance.</code><br>
+其实也都可以, measure的用法包含measurement</p>
+<h1 id="metric-measurement">metric, measurement</h1>
+<p>差不多</p>
+<h1 id="ratio-rate-proportion-and-fraction">ratio, rate, proportion and fraction</h1>
+<p>ratio是比率，差不多是同等地位的相比较，比如男女比，1：2<br>
+rate也是比率，但是有点像proportion，在什么之中的比率；但proportion是A proportion is ALWAYS EXPRESSED IN PERCENTAGE (%) （其实也没那么严格...）<br>
+fraction是分数的意思，1/2<br>
+https://www.quora.com/What-is-the-difference-between-the-definition-of-ratio-rate-and-proportion</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MEME]]></title>
+        <id>https://https://davidliu0901.github.io/post/meme/</id>
+        <link href="https://https://davidliu0901.github.io/post/meme/">
+        </link>
+        <updated>2022-04-21T03:55:34.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="a-quick-introduction-in-chinese">A quick introduction in Chinese:</h1>
+<p>https://www.jianshu.com/p/2c7be8e7ecfa</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Database]]></title>
+        <id>https://https://davidliu0901.github.io/post/database/</id>
+        <link href="https://https://davidliu0901.github.io/post/database/">
+        </link>
+        <updated>2022-02-26T04:33:30.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="tcga">TCGA</h1>
+<p>TCGA数据挖掘之基因表达差异分析<br>
+https://www.bilibili.com/video/BV117411Z7Cq?p=4</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TCGA]]></title>
+        <id>https://https://davidliu0901.github.io/post/tcga/</id>
+        <link href="https://https://davidliu0901.github.io/post/tcga/">
+        </link>
+        <updated>2022-02-26T04:33:30.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>TCGA数据挖掘之基因表达差异分析<br>
+https://www.bilibili.com/video/BV117411Z7Cq?p=4</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[R plot]]></title>
+        <id>https://https://davidliu0901.github.io/post/r-plot/</id>
+        <link href="https://https://davidliu0901.github.io/post/r-plot/">
+        </link>
+        <updated>2022-02-14T03:37:01.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<p>Miscellaneous Graphs</p>
+<p>http://rstudio-pubs-static.s3.amazonaws.com/58753_13e35d9c089d4f55b176057235778679.html</p>
+<h1 id="画图颜色-palette">画图颜色 palette</h1>
+<p>ggsci</p>
+<pre><code>p3 = ggplot(result, aes(x = threshold, y = temp_coe, color = V1)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = &quot;loess&quot;, alpha = 0.05, size = 1, span = 1) +scale_color_npg()+scale_fill_npg()+theme_bw()
+</code></pre>
+<p>https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html</p>
+<p>总结所有<br>
+https://github.com/EmilHvitfeldt/r-color-palettes</p>
+<h1 id="ggplot2">ggplot2</h1>
+<h2 id="facet_grid-geom_hline">facet_grid &amp; geom_hline</h2>
+<pre><code>library(ggplot2)
+dummy1 &lt;- expand.grid(X = factor(c(&quot;A&quot;, &quot;B&quot;)), Y = rnorm(10))
+dummy1$D &lt;- rnorm(nrow(dummy1))
+dummy2 &lt;- data.frame(X = c(&quot;A&quot;, &quot;B&quot;), Z = c(1, 0))
+ggplot(dummy1, aes(x = D, y = Y)) + geom_point() + facet_grid(~X) + 
+    geom_hline(data = dummy2, aes(yintercept = Z))
+</code></pre>
+<h2 id="多组">多组</h2>
+<pre><code>ggplot(data = data1, aes(x = x))+
+  geom_line(aes(y = y1), color = &quot;#f8766d&quot;,size = ssize, linetype = 'solid')+
+  geom_line(aes(y = y2), color = &quot;#00bfc4&quot;,size = ssize, linetype = 'solid')+
+  ylab(&quot;&quot;) + xlab(&quot;&quot;) + 
+  scale_shape_manual(values=c(1,2))+
+  geom_vline(xintercept = d, color = 'brown4',size = ssize-0.5, linetype = 'longdash')+
+  geom_ribbon(aes(ymin = 0, ymax = ifelse(x&gt;d &amp;x&lt;max(x0), y1, 0)), fill=&quot;#f8766d&quot;, alpha = 0.3)+
+  geom_ribbon(aes(ymin = 0, ymax = ifelse(x&lt;d &amp;x&gt;min(x0), y2, 0)), fill=&quot;#00bfc4&quot;, alpha = 0.3)+
+  theme_bw()+
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank())+
+  theme(panel.border = element_rect(color = 'grey'))+
+  annotate(&quot;text&quot;, x = -2, y = 0.35, label = &quot;Non-epitope&quot;, color = &quot;#f8766d&quot;, size = sssize)+
+  annotate(&quot;text&quot;, x = 3.5, y = 0.35, label = &quot;Epitope&quot;, color = &quot;#00bfc4&quot;, size = sssize)
+</code></pre>
+<h3 id="multiple-groups-points">multiple groups points</h3>
+<p>https://hansjoerg.me/2019/02/15/plotting-many-groups-with-ggplot2/</p>
+<h3 id="multiple-groups-lines">multiple groups lines</h3>
+<p>https://www.r-graph-gallery.com/line-chart-several-groups-ggplot2.html<br>
+https://www.datanovia.com/en/blog/how-to-create-a-ggplot-with-multiple-lines/</p>
+<h2 id="注释">注释</h2>
+<p>很详细了！!!!!<br>
+ggplot2: elegant graphics for data analysis<br>
+https://ggplot2-book.org/annotations.html</p>
+<h2 id="曲线">曲线</h2>
+<pre><code>  annotate(
+    geom = &quot;curve&quot;, x = 4, y = 35, xend = 2.65, yend = 27, 
+    curvature = .3, arrow = arrow(length = unit(2, &quot;mm&quot;))
+  ) +
+  annotate(geom = &quot;text&quot;, x = 4.1, y = 35, label = &quot;subaru&quot;, hjust = &quot;left&quot;)
+</code></pre>
+<h2 id="左上角加labels">左上角加labels</h2>
+<pre><code>使用ggpubr包中的ggarrange()函数来排版多个图形：
+ggarrange(bxp, dp, bp + rremove(&quot;x.text&quot;), 
+          labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),
+          ncol = 2, nrow = 2)
+ggarrange(plotlist=p_list, nrow=3, ncol=5)
+</code></pre>
+<p>或者</p>
+<pre><code>library(patchwork)
+f2+ plot_annotation(tag_levels = list(c(&quot;B&quot;)))
+</code></pre>
+<h2 id="颜色">颜色</h2>
+<p><code>scale_color_gradient(low=&quot;blue&quot;, high=&quot;red&quot;,limits=c(0,15))</code></p>
+<h2 id="坐标轴刻度">坐标轴刻度</h2>
+<pre><code>scale_x_continuous(breaks = seq(-15, 15, by = 2),limits = c(-15,9))scale_y_continuous(breaks = seq(-15, 15, by = 2),limits = c(-15,15))
+</code></pre>
+<h2 id="图形坐标轴伸缩变换">图形（坐标轴）伸缩变换</h2>
+<p><code>coord_fixed</code><br>
+https://zhuanlan.zhihu.com/p/29553382</p>
+<h2 id="lab">lab()</h2>
+<p>...	 A list of new name-value pairs. The name should be an aesthetic<br>
+也就是可以改名。</p>
+<pre><code>labs(
+  ...,
+  title = waiver(),
+  subtitle = waiver(),
+  caption = waiver(),
+  tag = waiver(),
+  alt = waiver(),
+  alt_insight = waiver()
+)
+</code></pre>
+<p>一个例子：</p>
+<pre><code>p3 = ggplot(result, aes(x = factor(threshold), y = temp_coe, color = V1, shape = V1)) +
+	geom_point(size = 2) +theme_bw()+
+	theme(axis.ticks = element_blank(), axis.text.x = element_blank())+
+	labs(color = &quot;Virus&quot;, shape = 'Virus')+
+</code></pre>
+<h1 id="ggforce">ggforce</h1>
+<p>可以放大，设置框框之类的</p>
+<pre><code>geom_mark()
+</code></pre>
+<p>https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/<br>
+https://www.data-imaginist.com/2019/the-ggforce-awakens-again/</p>
+<h1 id="ggrepel">ggrepel</h1>
+<p>能将text所加的字错开！<code>geom_text_repel</code>, <code>geom_label_repel</code></p>
+<pre><code>geom_text_repel(data=AntiDisdata[(AntiDisdata$Sig==TRUE),],aes(x=PC1, y=PC2,label=name),max.overlaps=100)
+</code></pre>
+<p>https://mran.microsoft.com/snapshot/2017-08-20/web/packages/ggrepel/vignettes/ggrepel.html</p>
+<pre><code>set.seed(42)
+ggplot(mtcars) +
+  geom_point(aes(wt, mpg), size = 5, color = 'grey') +
+  geom_label_repel(
+    aes(wt, mpg, fill = factor(cyl), label = rownames(mtcars)),
+    fontface = 'bold', color = 'white',
+    box.padding = unit(0.35, &quot;lines&quot;),
+    point.padding = unit(0.5, &quot;lines&quot;),
+    segment.color = 'grey50'
+  ) +
+  theme_classic(base_size = 16)
+</code></pre>
+]]></content>
+    </entry>
+</feed>

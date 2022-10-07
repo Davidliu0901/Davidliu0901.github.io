@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>VNPY | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">VNPY</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-09-07</span>
+            
+          </div>
+          <div class="post-content">
+            <p>Quant;</p>
+<!-- more -->
+<h1 id="strategy">strategy</h1>
+<p>多找因子，跟不同阶段（19年之前，之后）收益率算相关性，p-value舍去一些，神经网络拟合，记住用cv的。<br>
+找因子一个py<br>
+factors一个py<br>
+神经网络一个py（分参数估计和输出）</p>
+<h1 id="backtesing">backtesing</h1>
+<pre><code>from vnpy.app.cta_strategy.backtesting import BacktestingEngine, OptimizationSetting
+from vnpy.app.cta_strategy.strategies.atr_rsi_strategy import (
+    AtrRsiStrategy,
+)
+from datetime import datetime
+
+engine = BacktestingEngine()
+engine.set_parameters(
+    vt_symbol=&quot;IF888.CFFEX&quot;,
+    interval=&quot;1m&quot;,
+    start=datetime(2019, 1, 1),
+    end=datetime(2019, 4, 30),
+    rate=0.3/10000,
+    slippage=0.2,
+    size=300,
+    pricetick=0.2,
+    capital=1_000_000,
+)
+engine.add_strategy(AtrRsiStrategy, {})
+engine.load_data()
+engine.run_backtesting()
+# df = engine.calculate_result()
+engine.calculate_statistics()
+engine.show_chart()
+
+
+settingss = OptimizationSetting()
+settingss.set_target(&quot;sharpe_ratio&quot;)
+settingss.add_parameter(&quot;atr_length&quot;, 25, 27, 1)
+settingss.add_parameter(&quot;atr_ma_length&quot;, 10, 30, 10)
+
+engine.run_ga_optimization(settingss)
+engine.run_bf_optimization(setting)
+</code></pre>
+<p>主要是run_backtesting这个函数</p>
+<pre><code>for ix, i in enumerate(range(0, total_size, batch_size)):
+            batch_data = backtesting_data[i: i + batch_size]
+            for data in batch_data:
+                try:
+                    func(data)
+                except Exception:
+                    self.output(&quot;触发异常，回测终止&quot;)
+                    self.output(traceback.format_exc())
+                    return
+</code></pre>
+<p>而func是（会提交trade）</p>
+<pre><code>if self.mode == BacktestingMode.BAR:
+            func = self.new_bar
+        else:
+            func = self.new_tick
+
+        self.strategy.on_init()
+
+</code></pre>
+<p>再看看new_bar和new_tick</p>
+<pre><code>def new_bar(self, bar: BarData):
+        &quot;&quot;&quot;&quot;&quot;&quot;
+        self.bar = bar
+        self.datetime = bar.datetime
+
+        self.cross_limit_order()
+        self.cross_stop_order()
+        self.strategy.on_bar(bar)
+
+        self.update_daily_close(bar.close_price)
+
+    def new_tick(self, tick: TickData):
+        &quot;&quot;&quot;&quot;&quot;&quot;
+        self.tick = tick
+        self.datetime = tick.datetime
+
+        self.cross_limit_order()
+        self.cross_stop_order()
+        self.strategy.on_tick(tick)
+
+        self.update_daily_close(tick.last_price)
+</code></pre>
+<p>其中 self.strategy.on_bar(bar)是策略里面判断条件，然后buy,short,cover会发出订单，但注意只是发出，不一定成交！！</p>
+<p>两个撮合订单函数！！！cross_limit_order()限价定单，cross_stop_order()这是一种当买方出价或卖方要价抵达预定价位时自动清仓的指令。相当于后面是平仓，前面是开仓。这两个会从active_limit_orders读取，判断撮合条件，然后生成trade的字典，然后添加到self.trades当中。</p>
+<p>有个active_limit_orders，从策略提交来的。</p>
+<h1 id="put_event">put_event</h1>
+<p>更新ui的时候用，把策略信息更新</p>
+<h1 id="bargenerator-and-arraymanager">BarGenerator and ArrayManager</h1>
+<p>先把tick数据传到bar，再把bar传到am</p>
+<pre><code>    def on_tick(self, tick: TickData):
+        &quot;&quot;&quot;
+        Callback of new tick data update.
+        &quot;&quot;&quot;
+        self.bg.update_tick(tick)
+
+    def on_bar(self, bar: BarData):
+        &quot;&quot;&quot;
+        Callback of new bar data update.
+        &quot;&quot;&quot;
+        am = self.am
+        am.update_bar(bar)
+        if not am.inited:
+            return
+</code></pre>
+<p>因为am在初始化的时候也需要一些bar data来初始化，这时候我们不做交易，只是初始化而已，所以直接return。默认是要接收size=100 bar的data才完成初始化。详情：https://www.vnpy.com/forum/topic/6009-if-not-am-inited-bi-xu-yao-you-ma</p>
+<pre><code>BarGenerator(self.on_bar, 5, self.on_5min_bar)
+</code></pre>
+<p>这个初始化真的很神奇...on_5min_bar这个要在策略里面定义出来，engine还是调用的是策略里面的on_bar，但是on_bar会用bg.update_bar(bar).</p>
+<pre><code>    def on_bar(self, bar: BarData):
+        &quot;&quot;&quot;
+        Callback of new bar data update.
+        &quot;&quot;&quot;
+        self.bg.update_bar(bar)
+</code></pre>
+<p>这里就比较关键了，update_bar会判断有没有window，如果有window的话，反过来会在最后调用策略里写好的on_window_bar；如果没有，就直接结束。也就是说，要么策略开仓写在on_tick, on_bar里面，要么写在on_window_bar里面，不能重复。</p>
+<pre><code>    def update_bar_minute_window(self, bar: BarData) -&gt; None:
+        &quot;&quot;&quot;&quot;&quot;&quot;
+        # If not inited, create window bar object
+        if not self.window_bar:
+            dt = bar.datetime.replace(second=0, microsecond=0)
+            self.window_bar = BarData(
+                symbol=bar.symbol,
+                exchange=bar.exchange,
+                datetime=dt,
+                gateway_name=bar.gateway_name,
+                open_price=bar.open_price,
+                high_price=bar.high_price,
+                low_price=bar.low_price
+            )
+        # Otherwise, update high/low price into window bar
+        else:
+            self.window_bar.high_price = max(
+                self.window_bar.high_price,
+                bar.high_price
+            )
+            self.window_bar.low_price = min(
+                self.window_bar.low_price,
+                bar.low_price
+            )
+
+        # Update close price/volume/turnover into window bar
+        self.window_bar.close_price = bar.close_price
+        self.window_bar.volume += bar.volume
+        self.window_bar.turnover += bar.turnover
+        self.window_bar.open_interest = bar.open_interest
+
+        # Check if window bar completed
+        if not (bar.datetime.minute + 1) % self.window:
+            self.on_window_bar(self.window_bar)
+            self.window_bar = None
+</code></pre>
+<p>on_5min_bar(self, bar: BarData)这里的bardata是5分钟已经合成了的bardata了。</p>
+<h1 id="update_tick">update_tick</h1>
+<p>即使你有多个bg,当update_tick的时候，更新一个就行了，因为会自动调用on_bar函数。请不要往两个BarGenerator里同时update_tick，会导致1分钟线走完的时候出现两次on_bar调用，可能出现意外的情况</p>
+<pre><code>    def on_tick(self, tick: TickData):
+        &quot;&quot;&quot;
+        Callback of new tick data update.
+        &quot;&quot;&quot;
+        self.bg5.update_tick(tick)
+
+    def on_bar(self, bar: BarData):
+        &quot;&quot;&quot;
+        Callback of new bar data update.
+        &quot;&quot;&quot;
+        self.bg5.update_bar(bar)
+        self.bg15.update_bar(bar)
+</code></pre>
+<h1 id="update-bar">update bar</h1>
+<p>self.bg.update_bar(bar)一般只在你有window bar的时候用，不然都是self.am.update_bar(bar)</p>
+<h1 id="daily-数据">daily 数据</h1>
+<p>https://www.vnpy.com/forum/topic/3458-si-xing-dai-ma-ri-kxian-shu-ju-chao-jian-dan-fu-dai-ma<br>
+好像能读外来的数据，既然如此，直接生成今天到底开不开仓的指令，今天再在min_bar里面提交订单！</p>
+<pre><code>temp = read_csv('../data/IF888_1D.csv')
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/alphafold2-and-sequence-embedding/">
+              <h3 class="post-title">
+                下一篇：AlphaFold2 and Sequence Embedding
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

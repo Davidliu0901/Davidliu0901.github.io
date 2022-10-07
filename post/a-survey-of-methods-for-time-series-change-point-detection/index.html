@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>A survey of methods for time series change point detection | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">A survey of methods for time series change point detection</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-01-19</span>
+            
+          </div>
+          <div class="post-content">
+            <p>An review of change point topic; Heart Rate; Image analysis; Human activity;</p>
+<!-- more -->
+<p>Change point detection (CPD) 和 change point estimation不同？？</p>
+<blockquote>
+<p>change point estimation tries to model and interpret known changes in time series rather than identifying that a change has occurred. The focus of change point estimates is to describe the nature and degree of the known change.</p>
+</blockquote>
+<p>本文专注CPD，也就是只关注变点。</p>
+<p><strong>Medical condition monitoring</strong><br>
+Continuous monitoring of patient health involves trend detection in physiological variables such as heart rate, electroencephalogram (EEG)(脑电图), and electrocardiogram (ECG)(心电图) in order to perform automated, real-time monitoring. Research studies investigate change point detection for specific medical issues such as sleep problems, epilepsy, magnetic resonance imaging (MRI) interpretation, and understanding of brain activities.</p>
+<p>感觉这个挺有趣的欸。特别是脑电图.</p>
+<p><strong>Climate change detection;  Speech recognition</strong> 不感兴趣...</p>
+<p><strong>Image analysis</strong><br>
+Researchers and practitioners collect image data over time, or video data, for video-based surveillance. The detection of abrupt events, such as security breaches, can be formulated as a change point problem. Here, the observation at each time point is the digital encoding of an image.<br>
+这个感觉也很有意思。</p>
+<p><strong>Human activity analysis</strong><br>
+这个有点像研究人群，社交媒体的，比如谣言。</p>
+<p>这篇说实话，也没有那种trend的改变，还是两个distribution找change point.</p>
+<p>本文地址：<br>
+https://link.springer.com/article/10.1007/s10115-016-0987-z</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/on-clustering-network-valued-data/">
+              <h3 class="post-title">
+                下一篇：On clustering network-valued data
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

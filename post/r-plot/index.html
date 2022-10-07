@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>R plot | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">R plot</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2022-02-14</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<p>Miscellaneous Graphs</p>
+<p>http://rstudio-pubs-static.s3.amazonaws.com/58753_13e35d9c089d4f55b176057235778679.html</p>
+<h1 id="画图颜色-palette">画图颜色 palette</h1>
+<p>ggsci</p>
+<pre><code>p3 = ggplot(result, aes(x = threshold, y = temp_coe, color = V1)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = &quot;loess&quot;, alpha = 0.05, size = 1, span = 1) +scale_color_npg()+scale_fill_npg()+theme_bw()
+</code></pre>
+<p>https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html</p>
+<p>总结所有<br>
+https://github.com/EmilHvitfeldt/r-color-palettes</p>
+<h1 id="ggplot2">ggplot2</h1>
+<h2 id="facet_grid-geom_hline">facet_grid &amp; geom_hline</h2>
+<pre><code>library(ggplot2)
+dummy1 &lt;- expand.grid(X = factor(c(&quot;A&quot;, &quot;B&quot;)), Y = rnorm(10))
+dummy1$D &lt;- rnorm(nrow(dummy1))
+dummy2 &lt;- data.frame(X = c(&quot;A&quot;, &quot;B&quot;), Z = c(1, 0))
+ggplot(dummy1, aes(x = D, y = Y)) + geom_point() + facet_grid(~X) + 
+    geom_hline(data = dummy2, aes(yintercept = Z))
+</code></pre>
+<h2 id="多组">多组</h2>
+<pre><code>ggplot(data = data1, aes(x = x))+
+  geom_line(aes(y = y1), color = &quot;#f8766d&quot;,size = ssize, linetype = 'solid')+
+  geom_line(aes(y = y2), color = &quot;#00bfc4&quot;,size = ssize, linetype = 'solid')+
+  ylab(&quot;&quot;) + xlab(&quot;&quot;) + 
+  scale_shape_manual(values=c(1,2))+
+  geom_vline(xintercept = d, color = 'brown4',size = ssize-0.5, linetype = 'longdash')+
+  geom_ribbon(aes(ymin = 0, ymax = ifelse(x&gt;d &amp;x&lt;max(x0), y1, 0)), fill=&quot;#f8766d&quot;, alpha = 0.3)+
+  geom_ribbon(aes(ymin = 0, ymax = ifelse(x&lt;d &amp;x&gt;min(x0), y2, 0)), fill=&quot;#00bfc4&quot;, alpha = 0.3)+
+  theme_bw()+
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank())+
+  theme(panel.border = element_rect(color = 'grey'))+
+  annotate(&quot;text&quot;, x = -2, y = 0.35, label = &quot;Non-epitope&quot;, color = &quot;#f8766d&quot;, size = sssize)+
+  annotate(&quot;text&quot;, x = 3.5, y = 0.35, label = &quot;Epitope&quot;, color = &quot;#00bfc4&quot;, size = sssize)
+</code></pre>
+<h3 id="multiple-groups-points">multiple groups points</h3>
+<p>https://hansjoerg.me/2019/02/15/plotting-many-groups-with-ggplot2/</p>
+<h3 id="multiple-groups-lines">multiple groups lines</h3>
+<p>https://www.r-graph-gallery.com/line-chart-several-groups-ggplot2.html<br>
+https://www.datanovia.com/en/blog/how-to-create-a-ggplot-with-multiple-lines/</p>
+<h2 id="注释">注释</h2>
+<p>很详细了！!!!!<br>
+ggplot2: elegant graphics for data analysis<br>
+https://ggplot2-book.org/annotations.html</p>
+<h2 id="曲线">曲线</h2>
+<pre><code>  annotate(
+    geom = &quot;curve&quot;, x = 4, y = 35, xend = 2.65, yend = 27, 
+    curvature = .3, arrow = arrow(length = unit(2, &quot;mm&quot;))
+  ) +
+  annotate(geom = &quot;text&quot;, x = 4.1, y = 35, label = &quot;subaru&quot;, hjust = &quot;left&quot;)
+</code></pre>
+<h2 id="左上角加labels">左上角加labels</h2>
+<pre><code>使用ggpubr包中的ggarrange()函数来排版多个图形：
+ggarrange(bxp, dp, bp + rremove(&quot;x.text&quot;), 
+          labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;),
+          ncol = 2, nrow = 2)
+ggarrange(plotlist=p_list, nrow=3, ncol=5)
+</code></pre>
+<p>或者</p>
+<pre><code>library(patchwork)
+f2+ plot_annotation(tag_levels = list(c(&quot;B&quot;)))
+</code></pre>
+<h2 id="颜色">颜色</h2>
+<p><code>scale_color_gradient(low=&quot;blue&quot;, high=&quot;red&quot;,limits=c(0,15))</code></p>
+<h2 id="坐标轴刻度">坐标轴刻度</h2>
+<pre><code>scale_x_continuous(breaks = seq(-15, 15, by = 2),limits = c(-15,9))scale_y_continuous(breaks = seq(-15, 15, by = 2),limits = c(-15,15))
+</code></pre>
+<h2 id="图形坐标轴伸缩变换">图形（坐标轴）伸缩变换</h2>
+<p><code>coord_fixed</code><br>
+https://zhuanlan.zhihu.com/p/29553382</p>
+<h2 id="lab">lab()</h2>
+<p>...	 A list of new name-value pairs. The name should be an aesthetic<br>
+也就是可以改名。</p>
+<pre><code>labs(
+  ...,
+  title = waiver(),
+  subtitle = waiver(),
+  caption = waiver(),
+  tag = waiver(),
+  alt = waiver(),
+  alt_insight = waiver()
+)
+</code></pre>
+<p>一个例子：</p>
+<pre><code>p3 = ggplot(result, aes(x = factor(threshold), y = temp_coe, color = V1, shape = V1)) +
+	geom_point(size = 2) +theme_bw()+
+	theme(axis.ticks = element_blank(), axis.text.x = element_blank())+
+	labs(color = &quot;Virus&quot;, shape = 'Virus')+
+</code></pre>
+<h1 id="ggforce">ggforce</h1>
+<p>可以放大，设置框框之类的</p>
+<pre><code>geom_mark()
+</code></pre>
+<p>https://rviews.rstudio.com/2019/09/19/intro-to-ggforce/<br>
+https://www.data-imaginist.com/2019/the-ggforce-awakens-again/</p>
+<h1 id="ggrepel">ggrepel</h1>
+<p>能将text所加的字错开！<code>geom_text_repel</code>, <code>geom_label_repel</code></p>
+<pre><code>geom_text_repel(data=AntiDisdata[(AntiDisdata$Sig==TRUE),],aes(x=PC1, y=PC2,label=name),max.overlaps=100)
+</code></pre>
+<p>https://mran.microsoft.com/snapshot/2017-08-20/web/packages/ggrepel/vignettes/ggrepel.html</p>
+<pre><code>set.seed(42)
+ggplot(mtcars) +
+  geom_point(aes(wt, mpg), size = 5, color = 'grey') +
+  geom_label_repel(
+    aes(wt, mpg, fill = factor(cyl), label = rownames(mtcars)),
+    fontface = 'bold', color = 'white',
+    box.padding = unit(0.35, &quot;lines&quot;),
+    point.padding = unit(0.5, &quot;lines&quot;),
+    segment.color = 'grey50'
+  ) +
+  theme_classic(base_size = 16)
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/r-parallel/">
+              <h3 class="post-title">
+                下一篇：R parallel
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

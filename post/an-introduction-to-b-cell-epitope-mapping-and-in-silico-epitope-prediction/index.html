@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>An Introduction to B-Cell Epitope Mapping and In Silico Epitope Prediction | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">An Introduction to B-Cell Epitope Mapping and In Silico Epitope Prediction</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-02-08</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<p>一般20到400的氨基酸才会考虑空间折叠。</p>
+<blockquote>
+<p>The minimal amino acid sequence (contact residue span) required for proper folding of the discontinuous epitope in native proteins may range from 20 to 400 amino acids.</p>
+</blockquote>
+<p>一般来说，linear的其实也是空间epitope的一部分。</p>
+<blockquote>
+<p>It is generally believed that most of identified linear antigenic determinants are parts of the conformational B-cell epitopes.</p>
+</blockquote>
+<p>主要长度15-25？</p>
+<blockquote>
+<p>The majority of epitopes span 15–25 residues and an area of 600–1000A˚ 2 organized in loops.</p>
+</blockquote>
+<p>surface accessibility是一个比较重要的feature。</p>
+<blockquote>
+<p>The epitope surface accessibility is common feature. Sequence of the epitopes is enriched with Y, W, charged, and polar amino acids (amino acids with exposed side chains) and with specific amino acid pairs.</p>
+</blockquote>
+<p>其实amino acid的组成跟是不是epitope关系不大？</p>
+<blockquote>
+<p>In recent years, it was shown that the differences between residues within epitopes and other residues are not substantial and amino acid composition is not sufficient for differentiating between epitopes and nonepitopes (reviewed in [2]).</p>
+</blockquote>
+<p>关于linear epitope prediction tool的review:</p>
+<blockquote>
+<p>Advancement in the epitope mapping technologies hand in hand with bioinformatics has greatly contributed to developing immunoinformatics, which involves application of computational methods in immunology to unveil structures of antibody, B-cell, T-cell, and allergen, prediction of MHC binding, modelling of epitopes, and analysis of immune networks. Several algorithms have been developed to predict B-cell epitopes from their sequence or structure [15–18]. The early prediction methods were focused on the identification of linear epitopes through propensity scale. To improve prediction performance, methods based on machine learning such as Hidden Markov Model [19], recurrent neural network[20], and support vector machine [21] were developed. Despite this advancements, there are still a limited number of methods that predict discontinuous epitopes, and they need combination of the information, for example, amino acid statistics, spatial information, and surface exposure [22].</p>
+</blockquote>
+<p>linear 其实也失去了空间性会降低免疫原性：</p>
+<blockquote>
+<p>In spite of advances in B-cell epitope mapping, it is important to note that antibodies raised against peptides often lack the ability to bind native proteins due to unstructured nature of the peptide</p>
+</blockquote>
+<p>这个 说法 make energetic contributions，可以用在paper里面。</p>
+<blockquote>
+<p>lack important epitope information such as a detailed molecular characterization of epitopes and the mention of contact residues that make energetic contributions to binding.</p>
+</blockquote>
+<p>一些跟epitope probability有关的feature; 并且单参数window估计。</p>
+<blockquote>
+<p>hydrophilicity, solvent accessibility, flexibility, turns, polarity, antigenicity, and surface exposure. Earlier prediction methods were monoparametric (based on single residue property or propensity scale) calculating average propensity value along a sliding window [66–68].</p>
+</blockquote>
+<p>Structure-based的performance好得多。</p>
+<blockquote>
+<p>In general, prediction methods can be divided based on the level of input information to methods based on antigen sequence and methods based on 3D structure of antigen. Structure-based methods significantly outperform<br>
+sequence-based methods</p>
+</blockquote>
+<p>发现好多模型是训练小于百分之80相似性的data。</p>
+<blockquote>
+<p>with &lt;80% sequence identity;  Homology-reduced dataset;</p>
+</blockquote>
+<p>这个好像可以拿来比较一下</p>
+<blockquote>
+<p>BEST achieves AUC at 0.81 and 0.85 for the fragment-based prediction and 0.57 and 0.6 for full antigen. BEST outperforms several modern sequence-based B-cell epitope predictors including ABCPred, BCPred, COBEpro, and CBTOPE<br>
+[16].<br>
+http://biomine.cs.vcu.edu/datasets/BEST/</p>
+</blockquote>
+<p>Antibody-Specific Epitope Prediction</p>
+<blockquote>
+<p>A method using Antibody-Specific Epitope Prediction(ASEP) index developed by Soga and coworkers, represents the first benchmark in epitope prediction for individual antibody and has been used to narrow down candidate epitopes previously predicted by the conventional methods.<br>
+[87].</p>
+</blockquote>
+<blockquote>
+<p>One has to keep in mind that the epitopes are not intrinsic feature of proteins and antibody-ignored prediction methods predict only putative epitope to which an undefined Ab might bind. The real epitopes cannot be predicted ignoring the structural effect upon Ag-Ab complex formation. This fact opens new space for all algorithms to improve further.</p>
+</blockquote>
+<p>IEDB的多个例子：<br>
+http://tools.iedb.org/bcell/help/#Emini</p>
+<p>论文地址：<br>
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5227168/</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/tikz/">
+              <h3 class="post-title">
+                下一篇：Tikz
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

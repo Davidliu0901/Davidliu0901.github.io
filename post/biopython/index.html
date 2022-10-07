@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Biopython | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Biopython</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2022-09-27</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<h1 id="pdb">PDB</h1>
+<h2 id="pdbparser">PDBParser</h2>
+<p>The PERMISSIVE flag indicates that a number of common problems (see 11.7.1) associated with PDB files will be ignored (but note that some atoms and/or residues will be missing). If the flag is not present a PDBConstructionException will be generated if any problems are detected during the parse operation.</p>
+<pre><code>p = PDBParser(PERMISSIVE=1)
+</code></pre>
+<h2 id="parse_pdb_header">parse_pdb_header</h2>
+<p>Extract the header information</p>
+<pre><code>from Bio.PDB.parse_pdb_header import parse_pdb_header
+parse_pdb_header('../data/temp/4may.pdb')['compound']
+</code></pre>
+<h2 id="get_">get_...</h2>
+<p><code>.get_list() </code> a copy of child list<br>
+<code>.get_atom</code> a copy of all atom information (generator)<br>
+<code>.has_id</code> You can check if the entity has a child with a given id by using the has_id method.</p>
+<h2 id="atom">atom</h2>
+<p>The atomic data stored includes the atom name, the atomic coordinates (including standard deviation if present), the B factor (including anisotropic B factors and standard deviation if present), the altloc specifier and the full atom name including spaces. Less used items like the atom element number or the atomic charge sometimes specified in a PDB file are not stored.</p>
+<p>To manipulate the atomic coordinates, use the <code>transform</code> method of the Atom object. Use the <code>set_coord</code> method to specify the atomic coordinates directly.</p>
+<pre><code>&gt;&gt;&gt; a.get_name()       # atom name (spaces stripped, e.g. &quot;CA&quot;)
+&gt;&gt;&gt; a.get_id()         # id (equals atom name)
+&gt;&gt;&gt; a.get_coord()      # atomic coordinates
+&gt;&gt;&gt; a.get_vector()     # atomic coordinates as Vector object
+&gt;&gt;&gt; a.get_bfactor()    # isotropic B factor
+&gt;&gt;&gt; a.get_occupancy()  # occupancy
+&gt;&gt;&gt; a.get_altloc()     # alternative location specifier
+&gt;&gt;&gt; a.get_sigatm()     # standard deviation of atomic parameters
+&gt;&gt;&gt; a.get_siguij()     # standard deviation of anisotropic B factor
+&gt;&gt;&gt; a.get_anisou()     # anisotropic B factor
+&gt;&gt;&gt; a.get_fullname()   # atom name (with spaces, e.g. &quot;.CA.&quot;)
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/bwt-and-lf/">
+              <h3 class="post-title">
+                下一篇：BWT &amp; LF
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

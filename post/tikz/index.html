@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Tikz | Dwoooh</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://https://davidliu0901.github.io//favicon.ico?v=1665123304460">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://https://davidliu0901.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://https://davidliu0901.github.io/">
+        <img class="avatar" src="https://https://davidliu0901.github.io//images/avatar.png?v=1665123304460" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://https://davidliu0901.github.io/">
+        <h1 class="site-title">Dwoooh</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Tikz</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-02-06</span>
+            
+          </div>
+          <div class="post-content">
+            <!-- more -->
+<p>An example:</p>
+<pre><code>\usepackage{tikz}
+\tikzset{
+	state/.style={
+		rectangle,
+		rounded corners,
+		draw=black, 
+		very thick,
+		minimum height=2em,
+		inner sep=2pt,
+		text centered,
+	},
+}
+\begin{tikzpicture}
+
+% Position of QUERY 
+% Use previously defined 'state' as layout (see above)
+% use tabular for content to get columns/rows
+% parbox to limit width of the listing
+\node[state] (QUERY) {saxs};
+
+% State: ACK with different content
+\node[state,    	% layout (defined above)
+text width=3cm, 	% max text width
+yshift=2cm, 		% move 2cm in y
+right of=QUERY, 	% Position is to the right of QUERY
+node distance=6.5cm, 	% distance to QUERY
+anchor=center] (ACK) 	% posistion relative to the center of the 'box'
+{%
+	\begin{tabular}{l} 	% content
+	\textbf{Ack}\\
+	\parbox{2.8cm}{Bestätigen mit $RN_{16}$}
+	\end{tabular}
+};
+
+% STATE QUERYREP
+\node[state,
+below of=ACK,
+yshift=-2cm,
+anchor=center,
+text width=3cm] (QUERYREP) 
+{%
+	\begin{tabular}{l}
+	\textbf{QueryRep}\\
+	\parbox{2.8cm}{Dekrementiere Slotzähler}
+	\end{tabular}
+};
+
+% STATE EPC
+\node[state,
+right of=ACK,
+node distance=5cm,
+anchor=center] (EPC) 
+{%
+	\begin{tabular}{l}
+	Antwort: \textbf{EPC}\\
+	\parbox{4cm}{Mit nächstem \mbox{\textbf{QueryRep}} als &quot;`inventoried&quot;' markieren.}
+	\end{tabular}
+};
+
+% draw the paths and and print some Text below/above the graph
+\path (QUERY) 	edge[bend left=20]  node[anchor=south,above]{$SC_n=0$}
+node[anchor=north,below]{$RN_{16}$} (ACK)
+(QUERY)     	edge[bend right=20] node[anchor=south,above]{$SC_n\neq 0$} (QUERYREP)
+(ACK)       	edge                                                     (EPC)
+(EPC)       	edge[bend left]                                          (QUERYREP)
+(QUERYREP)  	edge[loop below]    node[anchor=north,below]{$SC_n\neq 0$} (QUERYREP)
+(QUERYREP)  	edge                node[anchor=left,right]{$SC_n = 0$} (ACK);
+
+\end{tikzpicture}
+</code></pre>
+<p>my example:</p>
+<pre><code>\begin{center}
+\begin{tikzpicture}
+\node[state] (Ap) {$A_p$};
+
+
+\node[state,    	% layout (defined above)
+yshift=1cm, 		% move 2cm in y
+right of=Ap, 	% Position is to the right of QUERY
+node distance=3cm, 	% distance to QUERY
+anchor=center] (Atp) 	% posistion relative to the center of the 'box'
+{$A_{tp}$};
+
+
+\node[state,
+below of=Atp,
+yshift=-3cm,
+anchor=center,
+] (rAtp) 
+{$A_{tp}^-$};
+
+\node[state,
+right of=Ap,
+node distance=6cm,
+anchor=center] (newtheta) 
+{$\Theta^*, \theta_0^*$};
+
+
+\node[state,
+below of=newtheta,
+yshift=-1cm,
+anchor=center] (newAp) 
+{$A_p^*$};
+
+\node[state,
+below of=Ap,
+yshift=-1cm,
+anchor=center] (theta) 
+{$\Theta, \theta_0$};
+
+\node[state,
+left of=Ap,
+node distance = 3cm,
+yshift=-1cm,
+anchor=center] (linear) 
+{$A_{np}, \sigma, \beta$};
+
+\node[state,
+right of=newtheta,
+node distance = 3cm,
+yshift=-1cm,
+anchor=center] (newlinear) 
+{$A_{np}^*,\sigma^*,\beta^*$};
+
+%% draw the paths and and print some Text below/above the graph
+\path[-&gt;,line width=1.5pt] (Ap) 	edge[bend left=20]  node[anchor=south,above]{$+\delta$} (Atp)
+(Atp) 	edge[bend left=20]   (newtheta)
+(newtheta) 	edge node[anchor=center](mid1){}  (newAp)
+(newAp) edge[bend left=20] node[anchor=south,below]{$-\delta$} (rAtp)
+(rAtp) edge[bend left=20] (theta)
+(theta) edge node[anchor=center](mid2){} (Ap);
+\path[double,-&gt;,line width=1.5pt] (mid1) edge (newlinear)
+(mid2) edge (linear);
+
+\end{tikzpicture}
+\end{center}
+</code></pre>
+<p>Example:<br>
+https://texample.net/tikz/examples/epc-flow-charts/</p>
+<p>Man:<br>
+https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf</p>
+<p>page 132 edge</p>
+<p>A tutorial:<br>
+http://www.math.uni-leipzig.de/~hellmund/LaTeX/pgf-tut.pdf</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://https://davidliu0901.github.io/post/a-nonparametric-approach-for-multiple-change-point-analysis-of-multivariate-data/">
+              <h3 class="post-title">
+                下一篇：A Nonparametric Approach for Multiple Change Point Analysis of Multivariate Data
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan"></div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+   | <a class="rss" href="https://https://davidliu0901.github.io//atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
